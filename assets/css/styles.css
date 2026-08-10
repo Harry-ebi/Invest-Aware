@@ -396,5 +396,10 @@ caption { text-align: left; color: var(--ink-faint); font-size: .85rem; padding:
 .moneymap.mm-has-focus .mm-layer.mm-on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft), 0 0 0 3px var(--accent); }
 .moneymap.mm-has-focus .mm-platform.mm-on { box-shadow: 0 0 0 2px var(--accent-soft), 0 0 0 3px var(--accent); }
 
+/* Layer annotations (e.g. where costs arise) */
+.mm-annot { display: inline-block; margin-top: .45rem; font-size: .74rem; font-weight: 600; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--warn-line); border-radius: 999px; padding: .2rem .62rem; }
+.mm-annot::before { content: "£ "; font-weight: 800; }
+.moneymap .mm-annotated { border-left-color: var(--gold); }
+
 /* Takeaway line often shown under the map */
 .mm-takeaway { max-width: 660px; margin: 1rem auto 0; }

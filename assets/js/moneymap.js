@@ -21,18 +21,18 @@
   var LAYERS = {
     you: {
       side: "", kicker: "The investor", title: "You", chips: [],
-      desc: "You decide how much to invest and which account to use.",
+      desc: "The starting point — you decide how much to invest, and which account and investments to use.",
       detail: {
-        what: "The person investing — you.",
-        affects: "How much goes in, and which account and investments you choose."
+        what: "Nothing on its own — you set everything below in motion by choosing how much to invest, where to hold it and what to buy.",
+        affects: "How much goes in, and every choice further down the map."
       }
     },
     account: {
       side: "where", kicker: "Where you hold it", title: "Account / wrapper",
       chips: ["ISA", "GIA", "Pension", "LISA"],
-      desc: "The account isn’t the investment. It affects tax treatment, contribution limits and when you can access the money.",
+      desc: "A container that holds your investments and sets the rules around them — the tax treatment, how much you can pay in, and when you can take money out. The account isn’t the investment.",
       detail: {
-        what: "An account — a “wrapper” — that holds your investments.",
+        what: "Holds your investments and applies a set of rules to them — like a labelled box that decides the tax and access terms for whatever you put inside.",
         affects: "Tax treatment, contribution limits and when/how you can get at your money.",
         inside: "Potentially funds, ETFs, shares, bonds or cash. (A GIA doesn’t have the same tax advantages as an ISA or pension.)"
       }
@@ -40,9 +40,9 @@
     investment: {
       side: "what", kicker: "What you invest in", title: "Investments",
       chips: ["Funds", "ETFs", "Shares", "Bonds"],
-      desc: "What your money is actually put into. This is where your real-world exposure — and much of the risk and return — is decided.",
+      desc: "What you actually put your money into. A fund or ETF is a ready-made bundle of many investments you can buy in one go — without picking each one yourself. A share is a single company; a bond is a loan.",
       detail: {
-        what: "What you put the money into: a fund, an ETF, individual shares or bonds.",
+        what: "Turns your money into holdings. A fund/ETF bundles many investments together so you buy them in one purchase; a share buys a slice of one company; a bond lends money in return for interest.",
         affects: "What your money is exposed to, and much of the risk and return.",
         inside: "One company (a single share), or many investments at once (a fund or ETF — an ETF is a type of fund)."
       }
@@ -60,9 +60,9 @@
     real: {
       side: "chain", kicker: "Where it ends up", title: "Real-world exposure",
       chips: ["Companies", "Governments", "Markets", "Economies"],
-      desc: "Ultimately, your money is connected to real-world assets.",
+      desc: "The real companies, governments and economies your money ends up connected to — this is where your returns ultimately come from.",
       detail: {
-        what: "The real-world assets your money is connected to.",
+        what: "Connects your money to the real economy — company profits, dividends and interest on bonds are what ultimately drive your returns.",
         affects: "Where your long-term returns come from — company profits, interest on bonds, and so on."
       }
     }
@@ -70,10 +70,10 @@
 
   var PLATFORM = {
     kicker: "The service that administers it", title: "Platform / provider",
-    desc: "Common infrastructure used to hold the account and access investments — not itself an investment, and not always a separate layer.",
+    desc: "The custody and interface: where your account is held and where you log in to view it, administer it and buy or sell investments. It isn’t itself an investment, and isn’t always a separate layer.",
     detail: {
-      what: "The service through which your account is run and investments are held/accessed.",
-      affects: "Admin and dealing — and often a platform fee. It is not an investment.",
+      what: "Holds everything safely (custody) and gives you a way to manage it — a bit like a shopfront and a safe combined. You use it to open the account, pay in, and place investments.",
+      affects: "Admin, dealing and usually a platform/account fee. It doesn’t change what you own.",
       inside: "Your account(s), and the investments inside them."
     }
   };
@@ -89,7 +89,7 @@
 
   function detailHtml(id, d) {
     var rows = "";
-    if (d.what) rows += '<div><dt>What is it?</dt><dd>' + esc(d.what) + "</dd></div>";
+    if (d.what) rows += '<div><dt>What does it do?</dt><dd>' + esc(d.what) + "</dd></div>";
     if (d.affects) rows += '<div><dt>What does it affect?</dt><dd>' + esc(d.affects) + "</dd></div>";
     if (d.inside) rows += '<div><dt>What’s inside it?</dt><dd>' + esc(d.inside) + "</dd></div>";
     return '<dl class="mm-detail" id="' + id + '" hidden>' + rows + "</dl>";
@@ -168,6 +168,27 @@
       var want = item.toLowerCase();
       root.querySelectorAll(".mm-chip").forEach(function (c) {
         if (c.getAttribute("data-chip") === want) c.classList.add("on");
+      });
+    }
+
+    // --- Annotations: pin a small tag to a layer, e.g.
+    //     data-annotate="platform:Platform / account fee|investment:Fund or ETF charge"
+    var annot = root.getAttribute("data-annotate");
+    if (annot) {
+      annot.split("|").forEach(function (pair) {
+        var idx = pair.indexOf(":");
+        if (idx < 0) return;
+        var id = pair.slice(0, idx).trim();
+        var label = pair.slice(idx + 1).trim();
+        var layer = root.querySelector('[data-layer="' + id + '"]');
+        if (!layer) return;
+        var heading = layer.querySelector(".mm-heading");
+        if (!heading) return;
+        var tag = document.createElement("span");
+        tag.className = "mm-annot";
+        tag.textContent = label;
+        heading.appendChild(tag);
+        layer.classList.add("mm-annotated");
       });
     }
 

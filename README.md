@@ -29,9 +29,15 @@ investaware/
 
 ## The single most important file: `assets/js/config.js`
 
-All figures that change — ISA allowance, LISA allowance and bonus, pension annual allowance,
-pension access age — live **only** in `config.js`. Change a value there and it updates everywhere
-it appears on the site. Any element marked `data-fig="ISA_ALLOWANCE"` is filled in automatically.
+Figures that change — ISA allowance, LISA allowance and bonus, pension annual allowance,
+pension access age — are defined in `config.js`, and any element marked `data-fig="ISA_ALLOWANCE"`
+is filled from it at runtime.
+
+**Belt-and-braces:** each of those values is *also* written as literal fallback text inside its
+element (e.g. `<strong data-fig="ISA_ALLOWANCE" data-money>£20,000</strong>`) so nothing ever
+renders blank if the script or config fails to load. When you update a figure, change it in
+**both** `config.js` and the inline fallback so they stay in step. (The chart assumptions below
+have no inline fallback — they're only used by JS, which the charts need anyway.)
 
 The same file holds the **illustrative assumptions** used to draw the charts (growth rate,
 inflation, contribution amounts, fee levels). These are round teaching numbers, not forecasts.

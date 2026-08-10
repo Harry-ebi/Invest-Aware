@@ -342,3 +342,59 @@ caption { text-align: left; color: var(--ink-faint); font-size: .85rem; padding:
 .dot-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; max-width: 320px; margin: 1.2rem 0; }
 .dot-grid i { aspect-ratio: 1; border-radius: 50%; background: var(--accent-line); }
 .dot-grid i.on { background: var(--accent); }
+
+/* =========================================================================
+   Money Map — "Where does your money actually go?" (moneymap.js)
+   ========================================================================= */
+.moneymap { max-width: 660px; margin: 1.8rem auto; }
+.mm-stack { display: flex; flex-direction: column; align-items: stretch; }
+.mm-arrow { align-self: center; height: 26px; display: flex; align-items: center; justify-content: center; }
+.mm-arrow::before { content: "↓"; color: var(--accent); font-size: 1.15rem; line-height: 1; }
+
+.mm-layer { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--line-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); overflow: hidden; }
+.mm-head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; background: none; border: 0; text-align: left; padding: .8rem 1.05rem .55rem; cursor: pointer; font: inherit; color: inherit; }
+.mm-head:hover { background: var(--surface-alt); }
+.mm-heading { min-width: 0; }
+.mm-kicker { display: block; text-transform: uppercase; letter-spacing: .1em; font-size: .68rem; font-weight: 700; color: var(--ink-faint); }
+.mm-title { display: block; font-family: var(--font-serif); font-size: 1.14rem; color: var(--ink); margin-top: .1rem; letter-spacing: -.01em; }
+.mm-toggle { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line-strong); color: var(--ink-soft); display: flex; align-items: center; justify-content: center; font-size: 1.05rem; line-height: 1; transition: transform .15s ease; }
+.mm-layer.open .mm-toggle, .mm-platform.open .mm-toggle { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) { .mm-toggle { transition: none; } }
+
+.mm-chips { display: flex; flex-wrap: wrap; gap: .35rem; padding: 0 1.05rem .35rem; }
+.mm-chip { background: var(--surface-alt); border: 1px solid var(--line); border-radius: 999px; padding: .24rem .66rem; font-size: .82rem; font-weight: 600; color: var(--ink-soft); }
+.mm-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.mm-desc { padding: .1rem 1.05rem 1rem; margin: 0; font-size: .89rem; line-height: 1.55; color: var(--ink-soft); max-width: none; }
+
+.mm-badge { display: inline-block; margin: 0 0 .1rem; font-size: .62rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: .14rem .42rem; border-radius: 5px; vertical-align: middle; }
+.mm-badge.where { background: var(--accent-soft); color: var(--accent-deep); border: 1px solid var(--accent-line); }
+.mm-badge.what { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--warn-line); }
+
+/* Distinct treatments so "where you hold it" and "what you own" never look equivalent */
+.mm-layer.mm-you   { border-left-color: var(--ink-soft); }
+.mm-layer.mm-where { border-left-color: var(--accent); }
+.mm-layer.mm-where .mm-title { color: var(--accent-deep); }
+.mm-layer.mm-what  { border-left-color: var(--gold); }
+.mm-layer.mm-chain { border-left-color: var(--line-strong); }
+
+/* Detail panels (hidden until tapped) */
+.mm-detail { padding: .7rem 1.05rem 1rem; margin: 0; gap: .6rem; background: var(--surface-alt); border-top: 1px dashed var(--line-strong); display: grid; }
+.mm-detail[hidden] { display: none; }
+.mm-detail dt { font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent); }
+.mm-detail dd { margin: .12rem 0 0; font-size: .89rem; line-height: 1.5; color: var(--ink-soft); }
+
+/* Platform frame wraps account + investments */
+.mm-platform { border: 1.5px dashed var(--accent-line); border-radius: var(--radius); padding: .35rem .55rem .6rem; background: linear-gradient(180deg, #ffffff, var(--surface-alt)); }
+.mm-platform > .mm-plat-head { padding-bottom: .3rem; }
+.mm-platform > .mm-plat-head .mm-title { font-size: 1.02rem; color: var(--ink-soft); }
+.mm-plat-desc { padding: 0 .5rem .5rem; }
+.mm-inner { display: flex; flex-direction: column; padding: .1rem; }
+.mm-inner .mm-layer { box-shadow: none; }
+
+/* Highlight / dim */
+.moneymap.mm-has-focus .mm-dim { opacity: .42; }
+.moneymap.mm-has-focus .mm-layer.mm-on { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft), 0 0 0 3px var(--accent); }
+.moneymap.mm-has-focus .mm-platform.mm-on { box-shadow: 0 0 0 2px var(--accent-soft), 0 0 0 3px var(--accent); }
+
+/* Takeaway line often shown under the map */
+.mm-takeaway { max-width: 660px; margin: 1rem auto 0; }

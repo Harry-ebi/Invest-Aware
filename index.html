@@ -6,6 +6,7 @@
   <title>InvestAware UK — Investing doesn't need to be complicated</title>
   <meta name="description" content="Straightforward, impartial education about investing, pensions and building wealth for the long term. No products to sell. No sales pitch. No jargon where we can avoid it.">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/moneymap2.css">
   <script src="assets/js/config.js"></script>
 </head>
 <body data-base="" data-section="home">
@@ -26,16 +27,105 @@
     <!-- WHERE DOES YOUR MONEY GO — THE MAP -->
     <section class="section-tint" id="money-map">
       <div class="container">
-        <p class="eyebrow">A map of investing</p>
-        <h2>Where does your money actually go?</h2>
-        <p class="muted" style="max-width:66ch">Invest £1,000 and where does it end up? Most people recognise the words — ISA, pension, fund, ETF, platform, shares — without seeing how they fit together. Here's the whole picture, from you at the top down to the real companies and governments your money reaches.</p>
-        <div class="moneymap" aria-label="Layered map of investing: you, then platform containing account and investments, then underlying assets, then real-world exposure."></div>
-        <p class="mm-takeaway center muted small">Tap any layer to see what it does.</p>
-        <div class="callout key" style="max-width:660px;margin-inline:auto">
-          <span class="callout-label">If you remember one thing</span>
-          <p class="big-idea mb-0">You haven't invested “in an ISA”. You've used an ISA to <em>hold</em> an investment that ultimately gives you exposure to real assets. The account is where you hold it — not the thing you own.</p>
+        <p class="eyebrow">Follow your money</p>
+        <h2>Where does your £1,000 actually go?</h2>
+        <p class="muted" style="max-width:60ch">A <b>platform</b> is where you buy. A <b>fund</b> is what you buy. <b>Shares</b> are what you own. Follow the same £1,000 down.</p>
+
+        <div class="mmap">
+          <div class="you-wrap">
+            <div class="node" style="--tint:var(--ink-soft)">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></div>
+              <p class="name">You</p>
+              <span class="mm-cash"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#e7d29a"/><text x="12" y="16" text-anchor="middle" font-size="12" font-family="Georgia" fill="#8a6420">£</text></svg>£1,000 to invest</span>
+            </div>
+            <div class="conn"><div class="l"></div><div class="tip"></div><div class="say">open an account</div></div>
+          </div>
+
+          <div class="isawrap">
+            <div class="wrap-tab">
+              <span class="lab">Held in</span>
+              <span class="wrap-seg" role="group" aria-label="Choose a wrapper">
+                <button type="button" data-w="ISA" aria-pressed="true">ISA</button>
+                <button type="button" data-w="Pension" aria-pressed="false">Pension</button>
+                <button type="button" data-w="GIA" aria-pressed="false">GIA</button>
+              </span>
+            </div>
+            <p class="wrap-note" id="wrapMsg"><b>ISA</b> — no tax on growth, dividends or withdrawals. Pay in up to £20,000 each tax year, and take money out whenever you like.</p>
+
+            <div class="flow-top">
+              <div class="kick">Where you go</div>
+              <div class="node" style="--tint:var(--c3)">
+                <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="11" rx="1.6"/><path d="M2 19.5h20"/><path d="M9.5 8.5l2.5 2-2.5 2M13.5 12.5h1.5"/></svg></div>
+                <p class="name">Platform</p>
+                <p class="say">where you buy &amp; hold investments</p>
+                <p class="egs">e.g. <b>Vanguard · InvestEngine · Hargreaves Lansdown</b></p>
+                <span class="mm-cash" style="margin-top:.5rem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#e7d29a"/><text x="12" y="16" text-anchor="middle" font-size="12" font-family="Georgia" fill="#8a6420">£</text></svg>£1,000 ready to invest</span>
+              </div>
+            </div>
+
+            <div class="platform-stub"><div class="l"></div></div>
+
+            <div class="branch">
+              <div class="arm primary">
+                <div class="arm-tag">What you buy →</div>
+                <div class="node" style="--tint:var(--accent)">
+                  <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16l-1.4 9.2a1.5 1.5 0 0 1-1.5 1.3H6.9a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M8.5 9 11 4M15.5 9 13 4"/><path d="M9 13v3M12 13v3M15 13v3"/></svg></div>
+                  <p class="name">A global fund</p>
+                  <p class="say">one purchase — a collection of investments bought together</p>
+                  <span class="mm-cash" style="margin-top:.5rem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#e7d29a"/><text x="12" y="16" text-anchor="middle" font-size="12" font-family="Georgia" fill="#8a6420">£</text></svg>£1,000 invested</span>
+                </div>
+                <div class="conn"><div class="l"></div><div class="tip"></div><div class="say">spreads your money across…</div></div>
+                <div class="kick" style="text-align:center">What's inside</div>
+                <div class="explode">
+                  <p class="cap"><b>Hundreds of companies</b>, in a single purchase</p>
+                  <div class="dotgrid" id="mmDots"></div>
+                  <div class="legend">
+                    <span><i class="r-us"></i>US</span><span><i class="r-eu"></i>Europe</span><span><i class="r-uk"></i>UK</span><span><i class="r-jp"></i>Japan</span><span><i class="r-em"></i>Emerging</span>
+                  </div>
+                  <p class="instr-note">Mostly <b>shares</b> — but a fund can also hold <b>bonds</b>, <b>cash</b> or <b>property</b>.</p>
+                </div>
+              </div>
+
+              <div class="arm secondary">
+                <div class="arm-tag">Or, buy directly</div>
+                <div class="node" style="--tint:var(--c4)">
+                  <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="16" height="13" rx="1.2"/><path d="M8 7V4.5h8V7M8 12h3M8 15.5h3M14.5 11l1.6 1.6-1.6 1.6"/></svg></div>
+                  <p class="name">One share</p>
+                  <p class="say">you pick a single company yourself</p>
+                  <span class="mm-cash" style="margin-top:.5rem"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#e7d29a"/><text x="12" y="16" text-anchor="middle" font-size="12" font-family="Georgia" fill="#8a6420">£</text></svg>£1,000 in one company</span>
+                </div>
+                <div class="conn"><div class="l"></div><div class="tip"></div><div class="say">you own just…</div></div>
+                <div class="kick" style="text-align:center">What you own</div>
+                <div class="oneco">
+                  <div class="bigdot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9.5 20v-5h5v5"/></svg></div>
+                  <p class="cap"><b>One company</b> — e.g. Apple.<br>Your outcome rides on it alone.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="seed">
+            <h3>So why buy a fund?</h3>
+            <div class="seed-two">
+              <div class="seed-card one">
+                <p class="h"><span class="d"></span>One share</p>
+                <p>Your money — and your result — depends heavily on that single company.</p>
+              </div>
+              <div class="seed-vs">vs</div>
+              <div class="seed-card div">
+                <p class="h"><span class="d"></span>A diversified fund</p>
+                <p>The same £1,000 is spread across many companies, sectors and countries.</p>
+              </div>
+            </div>
+            <div class="seed-cta">
+              <a href="investing/diversification.html">Next: why diversification matters
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
         </div>
-        <p class="center"><a class="link-arrow" href="accounts/understanding-wrappers.html">See it worked through, step by step</a></p>
+
+        <p class="center" style="margin-top:1.4rem"><a class="link-arrow" href="accounts/understanding-wrappers.html">See it worked through, step by step</a></p>
       </div>
     </section>
 
@@ -134,7 +224,7 @@
   </main>
 
   <footer id="site-footer"></footer>
-  <script src="assets/js/moneymap.js"></script>
+  <script src="assets/js/moneymap2.js"></script>
   <script src="assets/js/compounding.js"></script>
   <script src="assets/js/main.js"></script>
 </body>

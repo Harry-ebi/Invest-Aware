@@ -460,3 +460,22 @@ caption { text-align: left; color: var(--ink-faint); font-size: .85rem; padding:
   .gmt-tick .in { font-size: .68rem; }
 }
 @media (prefers-reduced-motion: reduce) { .gmt-bar, .gmt-total { transition: none; } }
+
+/* =========================================================================
+   Time-horizon / two-risks block (.hz) — market risk vs inflation risk.
+   Used on saving-vs-investing. Shared teaching component.
+   ========================================================================= */
+.hz { margin: 1.8rem 0; }
+.hz-scale { display: flex; justify-content: space-between; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: .5rem; }
+.hz-riskbar { height: 26px; border-radius: 8px; margin-bottom: 6px; display: flex; align-items: center; }
+.hz-riskbar .lbl { font-size: .74rem; font-weight: 800; color: #fff; padding: 0 .75rem; white-space: nowrap; }
+.hz-riskbar.market { background: linear-gradient(90deg, #9a5b52 0%, #9a5b52 16%, rgba(154,91,82,.10) 82%); }
+.hz-riskbar.infl { justify-content: flex-end; background: linear-gradient(90deg, rgba(176,131,51,.10) 18%, #b08333 84%, #a2762c 100%); }
+.hz-zones { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; margin-top: .9rem; }
+.hz-zone { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--tint, var(--accent)); border-radius: 10px; padding: .85rem .9rem; box-shadow: var(--shadow-sm); }
+.hz-zone .band { font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); }
+.hz-zone .risk { font-size: .82rem; color: var(--ink-soft); margin: .35rem 0 .55rem; }
+.hz-zone .risk b { color: var(--ink); }
+.hz-zone .vehicle { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: var(--tint, var(--accent-deep)); }
+.hz-zone .eg { font-size: .78rem; color: var(--ink-faint); margin-top: .25rem; }
+@media (max-width: 620px) { .hz-zones { grid-template-columns: 1fr; } }

@@ -479,3 +479,24 @@ caption { text-align: left; color: var(--ink-faint); font-size: .85rem; padding:
 .hz-zone .vehicle { font-family: var(--font-serif); font-weight: 700; font-size: 1.05rem; color: var(--tint, var(--accent-deep)); }
 .hz-zone .eg { font-size: .78rem; color: var(--ink-faint); margin-top: .25rem; }
 @media (max-width: 620px) { .hz-zones { grid-template-columns: 1fr; } }
+
+/* =========================================================================
+   "Missing the best days" bar chart (.bd) — static, real J.P. Morgan data.
+   Bars are content-sized and bottom-aligned so they can't overflow the axis.
+   ========================================================================= */
+.bd { margin: 1.6rem 0 0; }
+.bd-plotwrap { position: relative; }
+.bd-plot { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(.45rem, 2.5vw, 1.3rem); align-items: end; padding-top: 32px; position: relative; }
+.bd-col { display: flex; flex-direction: column; align-items: center; }
+.bd-val { font-family: var(--font-serif); font-weight: 600; font-size: clamp(.85rem, 2.1vw, 1.15rem); color: var(--ink); line-height: 1; margin-bottom: .35rem; white-space: nowrap; }
+.bd-bar { width: 100%; max-width: 86px; border-radius: 7px 7px 0 0; background: linear-gradient(180deg, #357569, var(--accent)); box-shadow: var(--shadow-sm); }
+.bd-bar.neg { background: linear-gradient(180deg, #bb8456, #9a5b52); }
+.bd-refline { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--line-strong); z-index: 2; }
+.bd-refline span { position: absolute; left: 0; top: -1.4em; font-size: .72rem; font-weight: 700; color: var(--ink-faint); background: var(--paper); padding: .05rem .35rem; border-radius: 4px; }
+.bd-baseline { height: 1px; background: var(--line-strong); }
+.bd-axis { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(.45rem, 2.5vw, 1.3rem); margin-top: .55rem; }
+.bd-tick { text-align: center; }
+.bd-tick .t { font-size: .82rem; font-weight: 700; color: var(--ink); line-height: 1.15; }
+.bd-tick .pa { display: block; font-size: .76rem; font-weight: 600; color: var(--ink-soft); font-variant-numeric: tabular-nums; margin-top: .2rem; }
+.bd-tick .pa.neg { color: var(--brick); }
+@media (max-width: 560px) { .bd-val { font-size: .72rem; } .bd-tick .t { font-size: .72rem; } .bd-tick .pa { font-size: .68rem; } }

@@ -117,12 +117,17 @@
 .dv-lunch { display: grid; gap: 1rem; margin-top: 1.4rem; }
 .dv-lrow { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.1rem; box-shadow: var(--shadow-sm); }
 .dv-lrow .lt { font-weight: 700; margin-bottom: .6rem; }
-.dv-lbarline { display: flex; align-items: center; gap: .8rem; font-size: .8rem; color: var(--ink-soft); }
-.dv-lbar { height: 16px; border-radius: 8px; }
-.dv-lbar.risk-hi { width: 88%; background: linear-gradient(90deg,#c98a4f,#9a5b52); }
-.dv-lbar.risk-lo { width: 54%; background: linear-gradient(90deg,#5a9184,var(--accent)); }
-.dv-lbar.ret { width: 70%; background: var(--accent-line); }
-.dv-ltag { white-space: nowrap; font-weight: 700; }
+.dv-lbarline { display: flex; align-items: center; gap: .7rem; font-size: .8rem; color: var(--ink-soft); }
+.dv-ltag { white-space: nowrap; font-weight: 700; min-width: 108px; }
+.dv-ltrack { display: block; flex: 1; }
+/* Gestural, not quantitative — soft fading ends so these read as "more / less",
+   not exact measurements. The qualitative word carries the meaning; expected-
+   return bars are deliberately identical between the two portfolios. */
+.dv-lbar { display: block; height: 11px; border-radius: 999px; }
+.dv-lbar.risk-hi { width: 78%; background: linear-gradient(90deg, #b98456 44%, rgba(154,91,82,.08) 100%); }
+.dv-lbar.risk-lo { width: 44%; background: linear-gradient(90deg, #5f9488 44%, rgba(47,107,94,.08) 100%); }
+.dv-lbar.ret { width: 60%; background: linear-gradient(90deg, var(--accent-line) 44%, rgba(188,211,204,.12) 100%); }
+.dv-lqual { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-faint); white-space: nowrap; min-width: 92px; }
 
 /* ---- 8. options A/B ---- */
 .dv-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.4rem; }
